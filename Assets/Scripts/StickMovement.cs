@@ -11,17 +11,19 @@ public class StickMovement : MonoBehaviour
 
     Vector2 _moveDirection;
 
-    PlayerInput _playerInput;
     Rigidbody _objectRigidbody;
-
+    PlayerInput _playerInput;
+    Animator _animator;
 
     void Awake() {
         _objectRigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate() {
         ApplyMovement();
+        ApplyAnimation();
         Rotate();
     }
 
@@ -38,9 +40,14 @@ public class StickMovement : MonoBehaviour
         _objectRigidbody.MovePosition(_objectRigidbody.position + GetMovementDirection());
     }
 
+    void ApplyAnimation() {
+        _animator.SetBool("isWalking", GetMovementDirection() != Vector3.zero);
+        _animator.SetFloat("movementX", GetMovementDirection().x);
+        _animator.SetFloat("movementZ", GetMovementDirection().z);
+    }
+
     void Rotate() {
         Vector3 targetDirection = Vector3.RotateTowards(transform.forward, GetMovementDirection(), rotateSpeed * Time.fixedDeltaTime, 0.0f);
-
         transform.rotation = Quaternion.LookRotation(targetDirection);
     }
 
