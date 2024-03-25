@@ -30,9 +30,7 @@ public class StickMovement : MonoBehaviour
     Vector3 GetMovementDirection() {
         _moveDirection = _playerInput.actions["Move"].ReadValue<Vector2>();
 
-        Vector3 moveDirection;
-
-        moveDirection = new Vector3(_moveDirection.x, 0, _moveDirection.y) * movementSpeed * Time.fixedDeltaTime;
+        Vector3 moveDirection = new Vector3(_moveDirection.x, 0, _moveDirection.y) * movementSpeed * Time.fixedDeltaTime;
         return moveDirection;
     }
 
@@ -41,7 +39,7 @@ public class StickMovement : MonoBehaviour
     }
 
     void ApplyAnimation() {
-        _animator.SetBool("isWalking", GetMovementDirection() != Vector3.zero);
+        _animator.SetBool("isMoving", GetMovementDirection() != Vector3.zero);
         _animator.SetFloat("movementX", GetMovementDirection().x);
         _animator.SetFloat("movementZ", GetMovementDirection().z);
     }
