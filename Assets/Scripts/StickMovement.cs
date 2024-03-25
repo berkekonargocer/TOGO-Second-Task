@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class StickMovement : MonoBehaviour
 {
-
     [SerializeField] float movementSpeed = 5.0f;
 
     Vector2 _moveDirection;
