@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class StickMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 5.0f;
-
     [SerializeField] float rotateSpeed = 5.0f;
+
+    [SerializeField] string moveAnimationParameter = "isMoving";
 
     Vector2 _moveDirection;
 
@@ -39,9 +40,7 @@ public class StickMovement : MonoBehaviour
     }
 
     void ApplyAnimation() {
-        _animator.SetBool("isMoving", GetMovementDirection() != Vector3.zero);
-        _animator.SetFloat("movementX", GetMovementDirection().x);
-        _animator.SetFloat("movementZ", GetMovementDirection().z);
+        _animator.SetBool(moveAnimationParameter, GetMovementDirection() != Vector3.zero);
     }
 
     void Rotate() {
