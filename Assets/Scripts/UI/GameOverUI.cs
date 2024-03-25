@@ -12,13 +12,13 @@ public class GameOverUI : MonoBehaviour
 
     void OnEnable() {
         gameOverPanel.gameObject.SetActive(false);
-        //GameManager.Instance.OnWinGame += DisplayWinGamePanel;
-        //GameManager.Instance.OnLoseGame += DisplayLoseGamePanel;
+        GameManager.Instance.OnWinGame += DisplayWinGamePanel;
+        GameManager.Instance.OnLoseGame += DisplayLoseGamePanel;
     }
 
     void OnDisable() {
-        //GameManager.Instance.OnWinGame -= DisplayWinGamePanel;
-        //GameManager.Instance.OnLoseGame -= DisplayLoseGamePanel;
+        GameManager.Instance.OnWinGame -= DisplayWinGamePanel;
+        GameManager.Instance.OnLoseGame -= DisplayLoseGamePanel;
     }
 
     void DisplayWinGamePanel() {
@@ -34,16 +34,14 @@ public class GameOverUI : MonoBehaviour
     void ShowPanel(bool isWin) {
         gameOverPanel.gameObject.SetActive(true);
 
-        //if (isWin)
-        //{
-        //    gameOverPanel.DOMoveY(600, showPanelAnimationDuration)
-        //                 .SetUpdate(true)
-        //                 .OnComplete(() => AudioManager.Instance.PlaySFX(GameManager.Instance.WinGameSFX));
-        //    return;
-        //}
+        if (isWin)
+        {
+            gameOverPanel.DOMoveY(600, showPanelAnimationDuration)
+                         .SetUpdate(true);
+            return;
+        }
 
-        //gameOverPanel.DOMoveY(600, showPanelAnimationDuration)
-        //                 .SetUpdate(true)
-        //                 .OnComplete(() => AudioManager.Instance.PlaySFX(GameManager.Instance.LoseGameSFX));
+        gameOverPanel.DOMoveY(600, showPanelAnimationDuration)
+                         .SetUpdate(true);
     }
 }
