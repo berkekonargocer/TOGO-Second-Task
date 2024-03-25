@@ -7,6 +7,8 @@ public class StickMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 5.0f;
 
+    [SerializeField] float rotateSpeed = 5.0f;
+
     Vector2 _moveDirection;
 
     PlayerInput _playerInput;
@@ -20,6 +22,7 @@ public class StickMovement : MonoBehaviour
 
     void FixedUpdate() {
         ApplyMovement();
+        Rotate();
     }
 
     Vector3 GetMovementDirection() {
@@ -33,6 +36,12 @@ public class StickMovement : MonoBehaviour
 
     void ApplyMovement() {
         _objectRigidbody.MovePosition(_objectRigidbody.position + GetMovementDirection());
+    }
+
+    void Rotate() {
+        Vector3 targetDirection = Vector3.RotateTowards(transform.forward, GetMovementDirection(), rotateSpeed * Time.fixedDeltaTime, 0.0f);
+
+        transform.rotation = Quaternion.LookRotation(targetDirection);
     }
 
     void StopMovement() {
