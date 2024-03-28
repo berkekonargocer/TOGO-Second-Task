@@ -1,14 +1,23 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
-{
-    [field: SerializeField] Color ItemColor { get; set; }
 
-    private void Awake() {
-        gameObject.GetComponent<Renderer>().material.color = ItemColor;
-    }
+    public class Item : MonoBehaviour, IPickable
+    {
+        [field: SerializeField] Color ItemColor { get; set; }
 
-    Transform GetTransform() {
-        return gameObject.transform;
-    }
-}
+        public void Pickup(Transform parent) {
+            SetParent(parent);
+        }
+
+        private void Awake() {
+            gameObject.GetComponent<Renderer>().material.color = ItemColor;
+        }
+
+        Transform GetTransform() {
+            return gameObject.transform;
+        }
+
+        void SetParent(Transform parent) {
+            gameObject.transform.parent = parent;
+        }
+    } 

@@ -2,11 +2,21 @@ using UnityEngine;
 
 public class PlayerCollisionCollider : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Pickable")) 
+    Inventory playerInventory;
+
+    void Awake() {
+        playerInventory = GetComponent<Inventory>();
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("PickableContainer")) 
         {
-            IPickable pickable = collision.gameObject.GetComponent<IPickable>();
-            pickable.Pickup();
+            if (playerInventory.GetItem() != null)
+                return;
+
+            IPickable pickable = collision.gameObject.GetComponentInChildren<IPickable>();
+            pickable.Pickup(transform);
+            playerInventory.AddItem(pickable);
         }
     }
 }

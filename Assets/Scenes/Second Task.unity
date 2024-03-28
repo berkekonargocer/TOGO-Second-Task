@@ -1286,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Table
       objectReference: {fileID: 0}
+    - target: {fileID: 8609198449638798767, guid: fdb82abf0bc28c144952f5394d06c335, type: 3}
+      propertyPath: m_TagString
+      value: PickableContainer
+      objectReference: {fileID: 0}
     - target: {fileID: 8669481980775923147, guid: fdb82abf0bc28c144952f5394d06c335, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7

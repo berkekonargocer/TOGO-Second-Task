@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    Transform item0;
+    IPickable item0;
 
-    Transform GetItem() {
+    public IPickable GetItem() {
         return item0;
     }
 
-    void SetItem(Transform item) {
+    public void AddItem(IPickable item) {
         item0 = item;
     }
 }
