@@ -16,7 +16,12 @@ public class PlayerCollisionCollider : MonoBehaviour
             if (_playerInventory.GetItem() != null)
                 return;
 
-            IPickable pickable = collision.gameObject.GetComponentInChildren<IPickable>();
+            PickableContainer pickableContainer = collision.gameObject.GetComponentInParent<PickableContainer>();
+            IPickable pickable = pickableContainer.TakePickable();
+
+            if (pickable == null)
+                return;
+
             PickupItem(pickable);
         }
 
@@ -25,7 +30,7 @@ public class PlayerCollisionCollider : MonoBehaviour
             if (_playerInventory.GetItem() == null)
                 return;
 
-            ItemPlaceContainer container = collision.gameObject.GetComponent<ItemPlaceContainer>();
+            ItemPlaceContainer container = collision.gameObject.GetComponentInParent<ItemPlaceContainer>();
             PlaceItem(container);
         }
     }
@@ -36,7 +41,6 @@ public class PlayerCollisionCollider : MonoBehaviour
     }
 
     void PlaceItem(ItemPlaceContainer container) {
-        container.Place(_playerInventory.GetItem());
-        _playerInventory.RemoveItem();
+        container.Place(_playerInventory.TakeItem());
     }
 }
