@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class PickableContainer : MonoBehaviour
 {
-    List<IPickable> _items = new List<IPickable>();
+    public List<IPickable> Items { get; private set; } = new List<IPickable>();
 
 
     private void Awake() {
         IPickable[] items = GetComponentsInChildren<IPickable>();
-        _items.AddRange(items);
+        Items.AddRange(items);
     }
 
     public IPickable TakePickable() {
-        if (_items.Count == 0)
+        if (Items.Count == 0)
             return null;
 
-        int rng = Random.Range(0, _items.Count);
-        IPickable item = _items[rng];
-        _items.Remove(item);
+        int rng = Random.Range(0, Items.Count);
+        IPickable item = Items[rng];
+        Items.Remove(item);
         return item;
     }
 }
