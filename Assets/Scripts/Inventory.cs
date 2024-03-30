@@ -11,4 +11,8 @@ public class Inventory : MonoBehaviour
     public void AddItem(IPickable item) {
         item0 = item;
     }
+
+    public void RemoveItem() {
+        item0 = null;
+    }
 }

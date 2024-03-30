@@ -1,23 +1,28 @@
 using UnityEngine;
 
 
-    public class Item : MonoBehaviour, IPickable
-    {
-        [field: SerializeField] Color ItemColor { get; set; }
+public class Item : MonoBehaviour, IPickable
+{
+    [field: SerializeField] Color ItemColor { get; set; }
 
-        public void Pickup(Transform parent) {
-            SetParent(parent);
-        }
+    public ItemColor Color { get { return color; } }
 
-        private void Awake() {
-            gameObject.GetComponent<Renderer>().material.color = ItemColor;
-        }
+    [SerializeField] ItemColor color;
 
-        Transform GetTransform() {
-            return gameObject.transform;
-        }
+    public void Place(Transform parent) {
+        SetParent(parent);
+        transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+    }
 
-        void SetParent(Transform parent) {
-            gameObject.transform.parent = parent;
-        }
-    } 
+    private void Awake() {
+        gameObject.GetComponent<Renderer>().material.color = ItemColor;
+    }
+
+    Transform GetTransform() {
+        return gameObject.transform;
+    }
+
+    void SetParent(Transform parent) {
+        gameObject.transform.parent = parent;
+    }
+}

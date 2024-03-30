@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ItemPlaceContainer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Transform[] items;
+    [SerializeField] ItemColor itemToPlaceColor;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    int _currentIndex = 0;
+
+    public event Action OnPlacedCorrect;
+    public event Action OnPlacedWrong;
+
+    public void Place(IPickable item) {
+        item.Place(items[_currentIndex].transform);
+        _currentIndex++;
+
+        if (item.Color == itemToPlaceColor)
+        {
+            OnPlacedCorrect?.Invoke();
+            return;
+        }
+
+        OnPlacedWrong?.Invoke();
     }
 }
