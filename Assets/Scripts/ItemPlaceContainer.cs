@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class ItemPlaceContainer : MonoBehaviour
 {
     [SerializeField] Transform[] items;
@@ -18,9 +19,11 @@ public class ItemPlaceContainer : MonoBehaviour
         if (item.Color == itemToPlaceColor)
         {
             OnPlacedCorrect?.Invoke();
+            Debug.Log("CORRECT");
             return;
         }
 
+        Debug.Log("WRONG");
         OnPlacedWrong?.Invoke();
     }
 }
