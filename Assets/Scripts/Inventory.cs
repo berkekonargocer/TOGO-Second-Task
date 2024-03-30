@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [field:SerializeField] public Transform itemCarryPosition;
+
     IPickable item0;
 
     public IPickable GetItem() {

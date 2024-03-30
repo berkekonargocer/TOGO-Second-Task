@@ -12,9 +12,9 @@ public class ItemPlaceContainer : MonoBehaviour
     public int CorrectPlacement { get; private set; } = 0;
     public int WrongPlacement { get; private set; } = 0;
 
-
     public event Action OnPlacedCorrect;
     public event Action OnPlacedWrong;
+
 
     public void Place(IPickable item) {
         item.Place(items[_currentPlaceIndex].transform);
@@ -24,12 +24,19 @@ public class ItemPlaceContainer : MonoBehaviour
         {
             CorrectPlacement++;
             OnPlacedCorrect?.Invoke();
-            Debug.Log("CORRECT");
             return;
         }
 
-        Debug.Log("WRONG");
         WrongPlacement++;
         OnPlacedWrong?.Invoke();
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        Inventory playerInventory = collision.gameObject.GetComponent<Inventory>();
+
+        if (playerInventory.GetItem() == null)
+            return;
+
+        Place(playerInventory.TakeItem());
     }
 }

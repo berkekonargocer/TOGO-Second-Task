@@ -9,6 +9,7 @@ public class Item : MonoBehaviour, IPickable
 
     [SerializeField] ItemColor color;
 
+
     public void Place(Transform parent) {
         SetParent(parent);
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
@@ -16,10 +17,6 @@ public class Item : MonoBehaviour, IPickable
 
     private void Awake() {
         gameObject.GetComponent<Renderer>().material.color = ItemColor;
-    }
-
-    Transform GetTransform() {
-        return gameObject.transform;
     }
 
     void SetParent(Transform parent) {

@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] ItemPlaceContainer greenTable;
     [SerializeField] ItemPlaceContainer redTable;
 
-
     [SerializeField] int failChance;
 
     int _totalPlaceableCount;
+
 
     void OnEnable() {
         greenTable.OnPlacedCorrect += CheckIfGameFinished;
@@ -52,9 +52,9 @@ public class GameManager : MonoBehaviour
     }
 
     void CheckIfGameFinished() {
-        int wrongPlacementCount = greenTable.WrongPlacement + redTable.WrongPlacement;
+        int wrongPlacements = greenTable.WrongPlacement + redTable.WrongPlacement;
 
-        if (wrongPlacementCount > failChance) {
+        if (wrongPlacements > failChance) {
             Debug.Log("YOU LOSE");
             OnLoseGame?.Invoke();
             return;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         int totalPlacedCount;
 
-        totalPlacedCount = greenTable.CorrectPlacement + redTable.CorrectPlacement + wrongPlacementCount;
+        totalPlacedCount = greenTable.CorrectPlacement + redTable.CorrectPlacement + wrongPlacements;
         
         if (_totalPlaceableCount == totalPlacedCount)
         {
