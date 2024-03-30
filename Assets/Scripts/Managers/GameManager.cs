@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         redTable.OnPlacedCorrect += CheckIfGameFinished;
         greenTable.OnPlacedWrong += CheckIfGameFinished;
         redTable.OnPlacedWrong += CheckIfGameFinished;
-
     }
 
     void OnDisable() {
@@ -33,8 +32,11 @@ public class GameManager : MonoBehaviour
         redTable.OnPlacedWrong -= CheckIfGameFinished;
     }
 
-    private void Awake() {
+    void Awake() {
         InitializeSingleton();
+    }
+
+    void Start() {
         _totalPlaceableCount = pickableContainer.Items.Count;
     }
 
