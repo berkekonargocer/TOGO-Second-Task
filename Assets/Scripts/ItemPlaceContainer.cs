@@ -33,10 +33,12 @@ public class ItemPlaceContainer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         Inventory playerInventory = collision.gameObject.GetComponent<Inventory>();
+        PlayerMaterial playerMaterial = collision.gameObject.GetComponent<PlayerMaterial>();
 
         if (playerInventory.GetItem() == null)
             return;
 
         Place(playerInventory.TakeItem());
+        playerMaterial.ChangeHeadMaterialColor(Color.white);
     }
 }

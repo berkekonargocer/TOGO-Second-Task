@@ -20,6 +20,7 @@ public class PickableContainer : MonoBehaviour
         Items.Remove(item);
         return item;
     }
+
     void PickupItem(IPickable pickable, Inventory inventory) {
         pickable.Place(inventory.itemCarryPosition);
         inventory.AddItem(pickable);
@@ -29,12 +30,14 @@ public class PickableContainer : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Inventory playerInventory = collision.gameObject.GetComponent<Inventory>();
+            PlayerMaterial playerMaterial = collision.gameObject.GetComponent<PlayerMaterial>();
 
             if (playerInventory.GetItem() != null || Items.Count <= 0)
                 return;
 
             IPickable pickable = TakePickable();
             PickupItem(pickable, playerInventory);
+            playerMaterial.ChangeHeadMaterialColor(pickable.ObjectColor);
         }
     }
 

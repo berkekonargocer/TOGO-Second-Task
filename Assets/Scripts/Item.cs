@@ -1,10 +1,11 @@
 using UnityEngine;
 
-
+[DisallowMultipleComponent]
 public class Item : MonoBehaviour, IPickable
 {
-    [field: SerializeField] Color ItemColor { get; set; }
-
+    public Color ObjectColor { get { return objectColor; } }
+    [SerializeField] Color objectColor;
+    
     public ItemColor Color { get { return color; } }
 
     [SerializeField] ItemColor color;
@@ -16,7 +17,8 @@ public class Item : MonoBehaviour, IPickable
     }
 
     private void Awake() {
-        gameObject.GetComponent<Renderer>().material.color = ItemColor;
+        Material material = GetComponent<Renderer>().material;
+        material.color = objectColor;
     }
 
     void SetParent(Transform parent) {

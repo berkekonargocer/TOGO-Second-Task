@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4221072318073840467}
   - component: {fileID: 7375237646929376577}
   - component: {fileID: 8596168004618191040}
-  - component: {fileID: 5685955952159509617}
+  - component: {fileID: 3958417894861970170}
   m_Layer: 0
   m_Name: Capsule Item
   m_TagString: Pickable
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.43714285, y: 1.4999998, z: -0.46600002}
-  m_LocalScale: {x: 0.071428575, y: 1, z: 0.071428575}
+  m_LocalScale: {x: 0.04, y: 0.035, z: 0.04}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,7 +108,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5685955952159509617
+--- !u!114 &3958417894861970170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1184036034689768477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50cc90d72b3725e4f85c7ece2a160f7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 21537296a0bd1f546bd0c877aad55d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ItemColor>k__BackingField: {r: 0.02441454, g: 1, b: 0, a: 1}
+  objectColor: {r: 0.05724919, g: 1, b: 0, a: 1}
   color: 0
