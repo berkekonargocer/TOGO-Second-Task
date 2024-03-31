@@ -16,6 +16,18 @@ public class StickMovement : MonoBehaviour
     PlayerInput _playerInput;
     Animator _animator;
 
+
+    void OnEnable() {
+        GameManager.Instance.OnWinGame += StopMovement;
+        GameManager.Instance.OnLoseGame += StopMovement;
+
+    }
+
+    void OnDisable() {
+        GameManager.Instance.OnWinGame -= StopMovement;
+        GameManager.Instance.OnLoseGame -= StopMovement;
+    }
+
     void Awake() {
         _objectRigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();

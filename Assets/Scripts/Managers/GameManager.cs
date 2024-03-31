@@ -41,6 +41,12 @@ public class GameManager : MonoBehaviour
     }
 
 
+
+    public void RestartGame() {
+        Utils.RestartLevel();
+    }
+
+
     void InitializeSingleton() {
         if (Instance == null)
         {
