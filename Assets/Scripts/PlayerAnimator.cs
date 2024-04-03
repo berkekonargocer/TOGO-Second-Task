@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     Animator _playerAnimator;
-    Rigidbody _playerRigidbody;
 
     void OnEnable() {
         GameManager.Instance.OnWinGame += PlayWinGameAnimation;
@@ -17,7 +16,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Awake() {
         _playerAnimator = GetComponent<Animator>();
-        _playerRigidbody = GetComponent<Rigidbody>();
     }
 
 
